@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <!-- Tone.jsをCDNから読み込む -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.min.js"></script>
+</head>
+<style>
+    .canvas {
+        position: absolute;
+        top: 20%;
+        left: 6%;
+    }
+
+    .p1 {
+        position: absolute;
+        top: 90%;
+        left: 94%;
+    }
+
+    .canvas1 {
+        position: absolute;
+        top: 20%;
+        left: 2%;
+    }
+
+    .canvas2 {
+        position: absolute;
+        top: 15%;
+        left: 6%;
+    }
+
+    .sab_div {
+        display: none;
+    }
+
+    .wave_create {
+        position: absolute;
+        top: 25%;
+        left: 30%;
+    }
+
+    .trac_name {
+        position: absolute;
+        top: 15%;
+        left: 38%;
+    }
+
+    .efect {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 30%;
+        left: 39%;
+    }
+
+    .create {
+        position: absolute;
+        top: 65%;
+        left: 45%;
+    }
+
+    .taitle {
+        position: absolute;
+        top: 2%;
+        left: 39%;
+    }
+
+    .border {
+        position: absolute;
+        top: 3%;
+        left: 25%;
+        border: 2px solid #000;
+        width: 700px;
+        height: 500px;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <canvas class="canvas1" id="myCanvas" width="50" height="400"></canvas>
+        <canvas class="canvas2" id="scale_canvas" width="1200" height="30"></canvas>
+        <select id="wave" name="wave">
+            <option id="0" value="0">初期
+        </select>
+        <label>小説数<input id="end" name="scale" type="number" size=20 maxlength=1 value="2"></label>
+        <label>BPM<input id="tempo" name="tempo" type="number" size=20 maxlength=3 value="120"></label>
+        <label>トラック名<input id="trac_name" name="trac_name" size=20 maxlength=20 value=""></label>
+        <button onclick="tracname_set()">適用</button>
+        <button onclick="tracadd()">トラックを追加</button>
+        <button id="startButton">音楽を開始/停止</button>
+    </div>
+
+    <div id="sab" class="sab_div">
+        <div class="border"></div>
+        <h1 class="taitle">トラックの作成</h1>
+        <div class="trac_name"><label>トラック名<input id="new_trac_name" name="new_trac_name" size=20 maxlength=20
+                    value=""></label></div>
+        <div class="wave_create">
+            <label><input type="radio" id="square" name="musicname" value="square" checked>square(矩形波)</label>
+            <label><input type="radio" id="sin" name="musicname" value="sin">sin(サイン波)</label>
+            <label><input type="radio" id="triangle" name="musicname" value="triangle">triangle(三角波)</label><label>
+                <input type="radio" id="sawtooth" name="musicname" value="sawtooth">sawtooth(ノコギリ波)</label>
+            <label><input type="radio" id="noise" name="musicname" value="noise">ノイズ</label>
+        </div>
+        <div class="efect">
+            <div><label>attack <input id="attack" name="new_trac_name" size=20 maxlength=20 value="0.005"></label></div>
+            <div><label>decay <input id="decay" name="new_trac_name" size=20 maxlength=20 value="0.1"></label></div>
+            <div><label>sustain<input id="sustain" name="new_trac_name" size=20 maxlength=20 value="0.2"></label></div>
+            <div><label>release<input id="release" name="new_trac_name" size=20 maxlength=20 value="0.5"></label></div>
+        </div>
+        <button class="create" onclick="trac_create()">作成</button>
+    </div>
+
+
+    <p class="p1" id="fps">nfps</p>
+    <!-- 独自のスクリプトファイル -->
+    <script src="効果音.js"></script>
+</body>
+
+</html>
